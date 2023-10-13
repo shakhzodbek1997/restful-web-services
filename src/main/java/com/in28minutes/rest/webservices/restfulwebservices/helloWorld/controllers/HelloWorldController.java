@@ -1,8 +1,7 @@
-package com.in28minutes.rest.webservices.restfulwebservices.helloWorld;
+package com.in28minutes.rest.webservices.restfulwebservices.helloWorld.controllers;
 
+import com.in28minutes.rest.webservices.restfulwebservices.helloWorld.beans.HelloWorldBean;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 // REST API
@@ -15,5 +14,10 @@ public class HelloWorldController {
     @GetMapping(path = "/hello-world")
     public String helloWorld(){ // this is the helloWorld() method
         return "Hello World";
+    }
+
+    @GetMapping(path = "/hello-world-bean")
+    public HelloWorldBean helloWorldBean(){
+        return new HelloWorldBean("Hello World Bean!");
     }
 }
