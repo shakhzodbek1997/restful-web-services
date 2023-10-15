@@ -2,6 +2,7 @@ package com.in28minutes.rest.webservices.restfulwebservices.helloWorld.controlle
 
 import com.in28minutes.rest.webservices.restfulwebservices.helloWorld.beans.HelloWorldBean;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 // REST API
@@ -19,5 +20,15 @@ public class HelloWorldController {
     @GetMapping(path = "/hello-world-bean")
     public HelloWorldBean helloWorldBean(){
         return new HelloWorldBean("Hello World Bean!");
+    }
+
+    // Path Parameters
+    // /users/{id}/todos/{id} ==> /users/2/todos/201
+    // /hello-world/path-variable/{name}
+    // /hello-world/path-variable/Ranga
+
+    @GetMapping(path = "/hello-world/path-variable/{age}")
+    public HelloWorldBean helloWorldPathVariable(@PathVariable String name){
+        return new HelloWorldBean(String.format("hello World, %s", name));
     }
 }
