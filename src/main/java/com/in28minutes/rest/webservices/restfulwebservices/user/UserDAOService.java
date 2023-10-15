@@ -12,12 +12,13 @@ public class UserDAOService {
     // JPA/Hibernate > Database
     // UserDAOService > Static List
 
+    private static int usersCount;
     private static List<User> users = new ArrayList<>();
 
     static {
-        users.add(new User(1, "Maria", LocalDate.now().minusYears(22)));
-        users.add(new User(2, "King", LocalDate.now().minusYears(26)));
-        users.add(new User(3, "Mira", LocalDate.now().minusYears(20)));
+        users.add(new User(++usersCount, "Maria", LocalDate.now().minusYears(22)));
+        users.add(new User(++usersCount, "King", LocalDate.now().minusYears(26)));
+        users.add(new User(++usersCount, "Mira", LocalDate.now().minusYears(20)));
     }
 
     public List<User> findAll(){
@@ -29,4 +30,9 @@ public class UserDAOService {
         return users.stream().filter(predicate).findFirst().get();
     }
 
+    public User save(User user){
+        user.setId(++usersCount);
+        users.add(user);
+        return user;
+    }
 }
